@@ -1,0 +1,21 @@
+[package]
+name = "phish"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+strip = true  # Automatically strip symbols from the binary. You can't use cargo bloat with this enabled, though.
+opt-level = "z"  # Optimize for size.
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+# This isn't required for development builds, but makes development
+# build behavior match release builds. To enable unwinding panics
+# during development, simply remove this line.
+panic = "abort"
+
+[dependencies]
+win-msgbox = "0.1"
+windows-sys = "0.48"
