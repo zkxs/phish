@@ -18,4 +18,4 @@ panic = "abort"
 
 [dependencies]
 win-msgbox = "0.1"
-windows-sys = "0.48"
+windows-sys = "0.52"
