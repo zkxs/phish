@@ -1,6 +1,6 @@
 [package]
 name = "phish"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 license = "MIT"
 
@@ -25,7 +25,7 @@ panic = "abort"
 
 [dependencies]
 windows-sys = { version = "0.52", features = [
-    "Win32_Foundation", # for `MessageBoxW` and `GetLastError`
+    "Win32_Foundation", # for `MessageBoxW`
     "Win32_System_Threading", # for `ExitProcess`
     "Win32_UI_WindowsAndMessaging", # for MessageBox API
 ] }

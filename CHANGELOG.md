@@ -1,5 +1,11 @@
 # Changelog
 
+# 0.2.1 - 2024-04-01
+
+## Removed
+
+- Removed error handling. No one was ever going to look at the returned error code. No significant change in binary size.
+
 # 0.2.0 - 2024-04-01
 
 ## Changed
