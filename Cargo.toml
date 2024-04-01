@@ -1,6 +1,6 @@
 [package]
 name = "phish"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 license = "MIT"
 
@@ -11,6 +11,12 @@ lto = true
 codegen-units = 1
 panic = "abort"
 
+# custom profile for cargo-bloat
+[profile.bloat]
+inherits = "release"
+debug = true # Helps to identify functions by name
+strip = false  # Necessary to run cargo-bloat
+
 [profile.dev]
 # This isn't required for development builds, but makes development
 # build behavior match release builds. To enable unwinding panics
@@ -18,5 +24,8 @@ panic = "abort"
 panic = "abort"
 
 [dependencies]
-win-msgbox = "0.1"
-windows-sys = "0.52"
+windows-sys = { version = "0.52", features = [
+    "Win32_Foundation", # for `MessageBoxW` and `GetLastError`
+    "Win32_System_Threading", # for `ExitProcess`
+    "Win32_UI_WindowsAndMessaging", # for MessageBox API
+] }
