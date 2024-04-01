@@ -1,6 +1,12 @@
 # Changelog
 
-# 0.2.2
+# 0.2.3 - 2024-04-01
+
+## Changed
+
+- Reduce section alignment to 4 bytes. 1.56kB binary size. UPX can no longer compress the binary.
+
+# 0.2.2 - 2024-04-01
 
 ## Changed
 
