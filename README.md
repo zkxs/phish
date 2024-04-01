@@ -1,6 +1,8 @@
 # Phish
 
-This program just shows a Windows alert. That's all. To make it easier to send to people I've heavily optimized the build for file size, as per the wonderful documentation over at [min-sized-rust](https://github.com/johnthagen/min-sized-rust).
+This is just a simple test to see how small I could make a Rust binary that does something simple. The application just
+shows a Windows messagebox alert. The file size optimizations were done by following the wonderful documentation over
+at [min-sized-rust](https://github.com/johnthagen/min-sized-rust).
 
 ## Build
 
