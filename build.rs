@@ -3,7 +3,8 @@ use std::env;
 fn main() {
     let target_os = env::var("CARGO_CFG_TARGET_OS");
     let target_env = env::var("CARGO_CFG_TARGET_ENV");
-    if Ok("windows") == target_os.as_deref() && Ok("msvc") == target_env.as_deref() {
+    let profile = env::var("PROFILE").unwrap();
+    if Ok("windows") == target_os.as_deref() && Ok("msvc") == target_env.as_deref() && profile != "debug" {
         // we should be using link.exe for this target
         // default flags: "/NOLOGO" "/LARGEADDRESSAWARE" "/SAFESEH" "/NXCOMPAT" "/SUBSYSTEM:windows" "/ENTRY:mainCRTStartup" "/OPT:REF,ICF" "/DEBUG:NONE"
         // documentation: https://learn.microsoft.com/en-us/cpp/build/reference/linker-options?view=msvc-170
