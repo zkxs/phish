@@ -1,5 +1,11 @@
 # Changelog
 
+# 0.2.2
+
+## Changed
+
+- Switch from `x86_64-pc-windows-msvc` to `i686-pc-windows-msvc` target. 3.0kB binary size, 2.5 kB with UPX.
+
 # 0.2.1 - 2024-04-01
 
 ## Removed

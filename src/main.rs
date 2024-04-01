@@ -18,7 +18,7 @@ use windows_sys::{
 
 #[allow(non_snake_case)]
 #[no_mangle]
-pub extern "C" fn mainCRTStartup() -> ! {
+pub extern "system" fn mainCRTStartup() -> ! {
     unsafe {
         MessageBoxW(
             0,
