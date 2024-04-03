@@ -1,3 +1,16 @@
+# 0.2.5 - 2024-04-03
+
+Removes use of `ExitProcess`, saving 68 bytes and reducing binary size to 1.20 kiB.
+
+## Changed
+
+- Replace call to `ExitProcess(0)` with `return 0`
+
+## Removed
+
+- Removed panic handler, replacing it with undefined behavior
+- Remove dependency on `Win32_System_Threading`, as we no longer call `ExitProcess`
+
 # 0.2.4 - 2024-04-02
 
 ## Changed

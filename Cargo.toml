@@ -1,6 +1,6 @@
 [package]
 name = "phish"
-version = "0.2.4"
+version = "0.2.5"
 edition = "2021"
 license = "MIT"
 categories = ["no-std::no-alloc", "rust-patterns"]
@@ -27,6 +27,5 @@ panic = "abort"
 [dependencies]
 windows-sys = { version = "0.52", features = [
     "Win32_Foundation", # for `MessageBoxW`
-    "Win32_System_Threading", # for `ExitProcess`
     "Win32_UI_WindowsAndMessaging", # for MessageBox API
 ] }

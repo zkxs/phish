@@ -2,17 +2,15 @@
 #![no_main] // Don't emit the `main` symbol: https://doc.rust-lang.org/reference/crates-and-source-files.html#the-no_main-attribute
 #![windows_subsystem = "windows"] // necessary to remove the weird console window that appears alongside the real GUI on Windows
 
+use core::hint::unreachable_unchecked;
 use core::panic::PanicInfo;
 
 use windows_sys::{
     s,
-    Win32::{
-        System::Threading::ExitProcess,
-        UI::WindowsAndMessaging::{
-            MB_ICONERROR,
-            MB_YESNOCANCEL,
-            MessageBoxA,
-        },
+    Win32::UI::WindowsAndMessaging::{
+        MB_ICONERROR,
+        MB_YESNOCANCEL,
+        MessageBoxA,
     },
 };
 
@@ -22,7 +20,7 @@ use windows_sys::{
 /// [extern "system"](https://doc.rust-lang.org/reference/items/external-blocks.html) uses the
 /// stdcall calling convention as required on Win32
 #[no_mangle] // Don't fuck up the symbol name: https://doc.rust-lang.org/reference/abi.html#the-no_mangle-attribute
-pub extern "system" fn mainCRTStartup() -> ! {
+pub extern "system" fn mainCRTStartup() -> u32 {
     unsafe {
         // https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxa
         MessageBoxA(
@@ -31,14 +29,14 @@ pub extern "system" fn mainCRTStartup() -> ! {
             s!("Virus Alert !"),
             MB_YESNOCANCEL | MB_ICONERROR,
         );
-        ExitProcess(0);
     }
+    0
 }
 
-/// We must define our own panic handler under no_std
+/// We must define our own panic handler under no_std, but we never panic so just declare it to be unreachable
 #[panic_handler]
 fn panic(_: &PanicInfo<'_>) -> ! {
     unsafe {
-        ExitProcess(1);
+        unreachable_unchecked();
     }
 }
