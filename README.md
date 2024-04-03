@@ -4,7 +4,7 @@ This is just a simple test to see how small I could make a Rust binary that does
 shows a Windows messagebox alert. The file size optimizations were done by following the wonderful documentation over
 at [min-sized-rust](https://github.com/johnthagen/min-sized-rust).
 
-The current binary size is 1604 bytes. Going much smaller would likely require handwritten assembly. If that sounds
+The current binary size is 1304 bytes. Going much smaller would likely require handwritten assembly. If that sounds
 interesting to you, take a look at [Alexander Sotirov's Tiny PE writeup](http://www.phreedom.org/research/tinype/).
 
 ## Usage
@@ -22,27 +22,51 @@ interesting to you, take a look at [Alexander Sotirov's Tiny PE writeup](http://
 cargo +nightly build -Z build-std=std,panic_abort -Z build-std-features=panic_immediate_abort --target i686-pc-windows-msvc --release
 ```
 
-## Check Bloat
+## Appendix
+
+This appendix section includes various interesting things I looked into while making this project.
+
+### Executable Compression
+
+[UPX](https://upx.github.io/) no longer works since phish version [0.2.3](CHANGELOG.md#023---2024-04-01), as the uncompressed binary is already too small.
 
 ```shell
-cargo +nightly bloat -Z build-std=std,panic_abort -Z build-std-features=panic_immediate_abort --target i686-pc-windows-msvc --profile bloat
+upx --best --ultra-brute -o phish-compressed.exe phish.exe
+```
+
+### Check Bloat
+
+[cargo-bloat](https://github.com/RazrFalcon/cargo-bloat) can be used to measure where space is being used:
+
+```shell
+cargo +nightly bloat -Z build-std=std,panic_abort -Z build-std-features=panic_immediate_abort --target i686-pc-windows-msvc --profile=optimized-debug
 ```
 
 The above command gives the following output. Not too shabby!
 
 ```
-    Analyzing target\i686-pc-windows-msvc\bloat\phish.exe
-
 File  .text Size     Crate Name
-1.6% 100.0%  28B [Unknown] _mainCRTStartup@0
+2.0% 100.0%  28B [Unknown] _mainCRTStartup@0
 0.0%   0.0%   0B           And 0 smaller methods. Use -n N to show more.
-1.6% 100.0%  28B           .text section size, the file size is 1.7KiB
+2.0% 100.0%  28B           .text section size, the file size is 1.4KiB
 ```
 
-## Executable Compression
+### Assembly Debugging
 
-[UPX](https://upx.github.io/) no longer works since phish version 0.2.3, as the uncompressed binary is already too small.
+It's not really necessary, but you can use [cargo-show-asm](https://github.com/pacak/cargo-show-asm) to see the generated assembly:
 
 ```shell
-upx --best --ultra-brute -o phish-compressed.exe phish.exe
+cargo +nightly asm -Z build-std=std,panic_abort -Z build-std-features=panic_immediate_abort --target i686-pc-windows-msvc --bin=phish --profile=optimized-debug --intel --simplify --everything
+```
+
+There's not very much:
+
+```asm
+push 19 # load the messagebox flags
+push offset _anon.e8eee900910a047c66d8ad11464962b0.1 # load the message title
+push offset _anon.e8eee900910a047c66d8ad11464962b0.0 # load the message text
+push 0 # null HWND pointer
+call dword ptr [__imp__MessageBoxA@16] # show the messagebox
+push 0 # load the exit code
+call dword ptr [__imp__ExitProcess@4] # exit the process cleanly
 ```

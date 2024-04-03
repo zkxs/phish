@@ -1,6 +1,6 @@
 [package]
 name = "phish"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2021"
 license = "MIT"
 categories = ["no-std::no-alloc", "rust-patterns"]
@@ -12,8 +12,8 @@ lto = true
 codegen-units = 1
 panic = "abort"
 
-# custom profile for cargo-bloat
-[profile.bloat]
+# custom release-optimized profile with debug symbols for cargo-bloat and other binary analysis tools, like cargo-show-asm
+[profile.optimized-debug]
 inherits = "release"
 debug = true # Helps to identify functions by name
 strip = false  # Necessary to run cargo-bloat
