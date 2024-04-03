@@ -62,11 +62,11 @@ cargo +nightly asm -Z build-std=std,panic_abort -Z build-std-features=panic_imme
 There's not very much:
 
 ```asm
-push 19 # load the messagebox flags
-push offset _anon.e8eee900910a047c66d8ad11464962b0.1 # load the message title
-push offset _anon.e8eee900910a047c66d8ad11464962b0.0 # load the message text
-push 0 # null HWND pointer
-call dword ptr [__imp__MessageBoxA@16] # show the messagebox
-push 0 # load the exit code
-call dword ptr [__imp__ExitProcess@4] # exit the process cleanly
+push 19 ; load the messagebox flags
+push offset _anon.e8eee900910a047c66d8ad11464962b0.1 ; load the message title
+push offset _anon.e8eee900910a047c66d8ad11464962b0.0 ; load the message text
+push 0 ; null HWND pointer
+call dword ptr [__imp__MessageBoxA@16] ; show the messagebox
+push 0 ; load the exit code
+call dword ptr [__imp__ExitProcess@4] ; exit the process cleanly
 ```
