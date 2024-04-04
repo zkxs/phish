@@ -1,3 +1,15 @@
+# 0.2.7 - 2024-04-04
+
+[Davide Pisanò's post](https://davidesnotes.com/articles/1/?page=4) pointed me at
+[Crinkler](https://github.com/runestubbe/Crinkler), a compressing linker. The new binary size is 503 bytes.
+
+## Changed
+
+- Switch linker from link.exe to Crinkler, saving 367 bytes
+- Return the result of the MessageBoxA instead of putting 0 in eax, saving a further 2 bytes. This makes the program
+  exit with a code of `2` instead of `0`, but that's not really a problem as the exit code is unimportant for this
+  application.
+
 # 0.2.6 - 2024-04-04
 
 link.exe tuning, saving 364 bytes and reducing binary size to 872 bytes.

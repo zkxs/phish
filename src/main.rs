@@ -28,9 +28,8 @@ pub extern "system" fn mainCRTStartup() -> u32 {
             s!("Hi, I am an Albanian virus but because of poor technology in my country unfortunately I am not able to harm your computer. Please be so kind to delete one of your important files yourself and then forward me to other users. Many thanks for your cooperation! Best regards,Albanian virus"),
             s!("Virus Alert !"),
             MB_YESNOCANCEL | MB_ICONERROR,
-        );
+        ) as u32
     }
-    0
 }
 
 /// We must define our own panic handler under no_std, but we never panic so just declare it to be unreachable
