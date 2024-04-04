@@ -8,7 +8,7 @@ crinkler ^
 /SUBSYSTEM:WINDOWS ^
 /LARGEADDRESSAWARE:NO ^
 /OUT:phish.exe ^
-/ENTRY:mainCRTStartup ^
+/ENTRY:m ^
 /NODEFAULTLIB ^
 /LIBPATH:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22000.0\um\x86" ^
 /LIBPATH:".\deps" ^
