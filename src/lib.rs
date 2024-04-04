@@ -30,7 +30,7 @@ pub extern "system" fn mainCRTStartup() -> u32 {
             MB_YESNOCANCEL | MB_ICONERROR,
         );
     }
-    0
+    1
 }
 
 /// We must define our own panic handler under no_std, but we never panic so just declare it to be unreachable

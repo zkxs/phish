@@ -5,6 +5,9 @@ edition = "2021"
 license = "MIT"
 categories = ["no-std::no-alloc", "rust-patterns"]
 
+[lib]
+crate-type = ["staticlib"]
+
 [profile.release]
 strip = true  # Automatically strip symbols from the binary. You can't use cargo bloat with this enabled, though.
 opt-level = "z"  # Optimize for size.
