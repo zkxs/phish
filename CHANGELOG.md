@@ -1,3 +1,13 @@
+# 0.2.6 - 2024-04-04
+
+link.exe tuning, saving 364 bytes and reducing binary size to 872 bytes.
+
+## Changed
+
+- Pass `/EMITPOGOPHASEINFO` to link.exe, removing some debug info
+- Pass `/DYNAMICBASE:NO` to link.exe, removing the relocation table
+- Pass a custom 64-byte MS-DOS stub in to link.exe. Credit to https://github.com/mcountryman/min-sized-rust-windows/pull/7
+
 # 0.2.5 - 2024-04-03
 
 Removes use of `ExitProcess`, saving 68 bytes and reducing binary size to 1.20 kiB.

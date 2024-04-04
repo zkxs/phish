@@ -4,7 +4,7 @@ This is just a simple test to see how small I could make a Rust binary that does
 shows a Windows messagebox alert. The file size optimizations were done by following the wonderful documentation over
 at [min-sized-rust](https://github.com/johnthagen/min-sized-rust).
 
-The current binary size is 1236 bytes. Going much smaller would likely require handwritten assembly. If that sounds
+The current binary size is 872 bytes. Going much smaller would likely require handwritten assembly. If that sounds
 interesting to you, take a look at [Alexander Sotirov's Tiny PE writeup](http://www.phreedom.org/research/tinype/).
 
 ## Usage
