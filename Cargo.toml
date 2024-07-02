@@ -4,6 +4,7 @@ version = "0.2.7"
 edition = "2021"
 license = "MIT"
 categories = ["no-std::no-alloc", "rust-patterns"]
+repository = "https://github.com/zkxs/phish"
 
 [profile.release]
 strip = true  # Automatically strip symbols from the binary. You can't use cargo bloat with this enabled, though.
