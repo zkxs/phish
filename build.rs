@@ -5,7 +5,7 @@ fn main() {
     let target_env = env::var("CARGO_CFG_TARGET_ENV");
     let out_dir =  env::var("OUT_DIR").unwrap();
     if Ok("windows") == target_os.as_deref() && Ok("msvc") == target_env.as_deref() {
-        // we should be using link.exe for this target, but we've done .cargo/config hijinks to change it to crinkler
+        // we should be using link.exe for this target, but we've done .cargo/config.toml hijinks to change it to crinkler
         // default flags cargo adds: "/NOLOGO" "/LARGEADDRESSAWARE" "/SAFESEH" "/NXCOMPAT" "/SUBSYSTEM:windows" "/ENTRY:mainCRTStartup" "/OPT:REF,ICF" "/DEBUG:NONE"
         // linker flag documentation: https://github.com/runestubbe/Crinkler/blob/master/doc/manual.txt
         println!("cargo:rustc-link-arg-bins=/NODEFAULTLIB");
