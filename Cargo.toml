@@ -1,3 +1,5 @@
+cargo-features = ["panic-immediate-abort"]
+
 [package]
 name = "phish"
 version = "0.2.7"
@@ -12,7 +14,7 @@ strip = true  # Automatically strip symbols from the binary. You can't use cargo
 opt-level = "z"  # Optimize for size.
 lto = true
 codegen-units = 1
-panic = "abort"
+panic = "immediate-abort"
 
 # custom release-optimized profile with debug symbols for cargo-bloat and other binary analysis tools, like cargo-show-asm
 [profile.optimized-debug]

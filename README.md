@@ -30,7 +30,7 @@ Yep, it's just an Albanian Virus clone.
    [Chocolatey](https://chocolatey.org/) by running `choco install crinkler`.
 2. Run the following:
    ```shell
-   cargo +nightly build -Z build-std=std,panic_abort -Z build-std-features=panic_immediate_abort --target i686-pc-windows-msvc --release
+   +nightly build -Z build-std=std,panic_abort -Z build-std-features="optimize_for_size" --target i686-pc-windows-msvc --release
    ```
 
 ## Appendix
@@ -59,7 +59,7 @@ binaries.
 It's not really necessary, but you can use [cargo-show-asm](https://github.com/pacak/cargo-show-asm) to see the generated assembly:
 
 ```shell
-cargo +nightly asm -Z build-std=std,panic_abort -Z build-std-features=panic_immediate_abort --target i686-pc-windows-msvc --bin=phish --profile=optimized-debug --intel --simplify --everything
+cargo +nightly asm -Z build-std=std,panic_abort -Z build-std-features="optimize_for_size" --target i686-pc-windows-msvc --bin=phish --profile=optimized-debug --intel --simplify --everything
 ```
 
 There's not very much:
