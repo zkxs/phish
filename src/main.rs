@@ -19,7 +19,7 @@ use windows_sys::{
 /// Because we're using no_main we must create this ourselves. Note that
 /// [extern "system"](https://doc.rust-lang.org/reference/items/external-blocks.html) uses the
 /// stdcall calling convention as required on Win32
-#[no_mangle] // Don't fuck up the symbol name: https://doc.rust-lang.org/reference/abi.html#the-no_mangle-attribute
+#[unsafe(no_mangle)] // Don't fuck up the symbol name: https://doc.rust-lang.org/reference/abi.html#the-no_mangle-attribute
 pub extern "system" fn mainCRTStartup() -> u32 {
     unsafe {
         // https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxa

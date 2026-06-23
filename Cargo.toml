@@ -3,11 +3,10 @@ cargo-features = ["panic-immediate-abort"]
 [package]
 name = "phish"
 version = "0.2.7"
-edition = "2021"
+edition = "2024"
 license = "MIT"
 categories = ["no-std::no-alloc", "rust-patterns"]
 repository = "https://github.com/zkxs/phish"
-rust-version = "1.59"
 
 [profile.release]
 strip = true  # Automatically strip symbols from the binary. You can't use cargo bloat with this enabled, though.
